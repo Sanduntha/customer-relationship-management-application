@@ -1,10 +1,7 @@
 const { Op } = require('sequelize');
 const { Lead, LeadNote, LeadActivity, User } = require('../models');
 
-/**
- * Get all leads with filtering, search, and pagination
- * GET /api/leads
- */
+// Fetch all leads with support for filtering, search, and pagination
 const getLeads = async (req, res) => {
     try {
         const {
@@ -90,10 +87,7 @@ const getLeads = async (req, res) => {
     }
 };
 
-/**
- * Get single lead by ID with notes and activities
- * GET /api/leads/:id
- */
+// Get details for a specific lead, including their notes and activity history
 const getLead = async (req, res) => {
     try {
         const lead = await Lead.findByPk(req.params.id, {
@@ -136,10 +130,7 @@ const getLead = async (req, res) => {
     }
 };
 
-/**
- * Create a new lead
- * POST /api/leads
- */
+// Create a new lead record and log the initial activity
 const createLead = async (req, res) => {
     try {
         const {

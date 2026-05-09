@@ -1,14 +1,8 @@
--- =============================================
--- CRM Lead Management System - Database Schema
--- =============================================
-
--- Create the database
+-- Main database setup
 CREATE DATABASE IF NOT EXISTS crm_leads_db;
 USE crm_leads_db;
 
--- =============================================
--- Users Table
--- =============================================
+-- Users and Auth
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -20,9 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- =============================================
--- Leads Table
--- =============================================
+-- Core Leads data
 CREATE TABLE IF NOT EXISTS leads (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lead_name VARCHAR(150) NOT NULL,
@@ -43,9 +35,7 @@ CREATE TABLE IF NOT EXISTS leads (
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- =============================================
--- Lead Notes Table
--- =============================================
+-- Notes and Activity tracking
 CREATE TABLE IF NOT EXISTS lead_notes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lead_id INT NOT NULL,
@@ -55,9 +45,7 @@ CREATE TABLE IF NOT EXISTS lead_notes (
     FOREIGN KEY (lead_id) REFERENCES leads(id) ON DELETE CASCADE
 );
 
--- =============================================
--- Lead Activities Table (Bonus - Activity Timeline)
--- =============================================
+
 CREATE TABLE IF NOT EXISTS lead_activities (
     id INT AUTO_INCREMENT PRIMARY KEY,
     lead_id INT NOT NULL,
@@ -70,18 +58,13 @@ CREATE TABLE IF NOT EXISTS lead_activities (
     FOREIGN KEY (lead_id) REFERENCES leads(id) ON DELETE CASCADE
 );
 
--- =============================================
--- Seed Data - Test Users
--- =============================================
--- Password: password123 (bcrypt hashed)
+-- Seed data for testing (password is password123)
 INSERT INTO users (name, email, password, role, avatar_color) VALUES
 ('Admin User', 'admin@example.com', '$2b$10$WZjfEPAa50eU/8SYimXw5u5yQJWrqLIihZ8VpXm4JE3uxgcwp4j8.', 'admin', '#6366f1'),
 ('John Smith', 'john@example.com', '$2b$10$WZjfEPAa50eU/8SYimXw5u5yQJWrqLIihZ8VpXm4JE3uxgcwp4j8.', 'salesperson', '#ec4899'),
 ('Sarah Johnson', 'sarah@example.com', '$2b$10$WZjfEPAa50eU/8SYimXw5u5yQJWrqLIihZ8VpXm4JE3uxgcwp4j8.', 'salesperson', '#14b8a6');
 
--- =============================================
--- Seed Data - Sample Leads
--- =============================================
+
 INSERT INTO leads (lead_name, company_name, email, phone, lead_source, assigned_salesperson, status, estimated_deal_value, priority, lead_score, next_follow_up, description, created_by) VALUES
 ('James Wilson', 'TechCorp Solutions', 'james@techcorp.com', '+1-555-0101', 'Website', 'John Smith', 'New', 25000.00, 'High', 75, DATE_ADD(CURDATE(), INTERVAL 3 DAY), 'Interested in enterprise software solution', 1),
 ('Emily Chen', 'DataFlow Inc', 'emily@dataflow.io', '+1-555-0102', 'LinkedIn', 'Sarah Johnson', 'Contacted', 50000.00, 'Critical', 90, DATE_ADD(CURDATE(), INTERVAL 1 DAY), 'Looking for data analytics platform', 1),
@@ -94,9 +77,7 @@ INSERT INTO leads (lead_name, company_name, email, phone, lead_source, assigned_
 ('Thomas Garcia', 'LogiTrans Corp', 'thomas@logitrans.com', '+1-555-0109', 'Referral', 'John Smith', 'Qualified', 110000.00, 'Critical', 88, DATE_ADD(CURDATE(), INTERVAL 1 DAY), 'Fleet management solution', 1),
 ('Sandra Kim', 'MediaWave Studios', 'sandra@mediawave.com', '+1-555-0110', 'Event', 'Sarah Johnson', 'Proposal Sent', 55000.00, 'Medium', 78, DATE_ADD(CURDATE(), INTERVAL 6 DAY), 'Content management platform', 1);
 
--- =============================================
--- Seed Data - Sample Notes
--- =============================================
+
 INSERT INTO lead_notes (lead_id, note_content, created_by) VALUES
 (1, 'Initial contact made via website form. Interested in premium plan.', 'Admin User'),
 (1, 'Scheduled a demo call for next week.', 'John Smith'),
@@ -106,9 +87,7 @@ INSERT INTO lead_notes (lead_id, note_content, created_by) VALUES
 (5, 'Deal closed! Annual contract signed. Onboarding starts next month.', 'John Smith'),
 (6, 'Lost to competitor offering lower price. Follow up in 6 months.', 'Sarah Johnson');
 
--- =============================================
--- Seed Data - Sample Activities
--- =============================================
+
 INSERT INTO lead_activities (lead_id, activity_type, description, performed_by, old_value, new_value) VALUES
 (1, 'created', 'Lead created', 'Admin User', NULL, NULL),
 (1, 'note_added', 'Added note about initial contact', 'Admin User', NULL, NULL),

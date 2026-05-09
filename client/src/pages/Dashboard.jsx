@@ -57,7 +57,7 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      {/* Row 1: Primary Metrics (Required: Total, New, Qualified, Won) */}
+      {/* Main Stats Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Total Leads', val: summary.totalLeads, icon: HiOutlineUsers, color: 'text-blue-600', bg: 'bg-blue-50' },
@@ -77,7 +77,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Row 2: Financial Metrics (Required: Lost, Total Value, Won Value, Conversion) */}
+      {/* Deal Pipeline Values */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Lost Leads', val: summary.lostLeads, icon: HiOutlineXCircle, color: 'text-red-600', bg: 'bg-red-50' },
