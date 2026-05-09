@@ -6,18 +6,20 @@ The core focus of this project was to build a tool that isn't just a database en
 ### Key Decisions:
 1.  **Architecture**: Used a decoupled React frontend and Node.js backend. This allows for scalability and independent deployment.
 2.  **State Management**: Leveraged React Context for authentication and standard hooks for local page state, keeping the bundle light.
-3.  **Database Design**: Chose an ACID-compliant MySQL structure. Relationships were carefully modeled to ensure that deleting a lead cleans up its notes and activities (Cascade).
-4.  **Security**: Implemented JWT with HTTP-only tokens (simulation via localStorage for simplicity) and Bcrypt hashing for passwords.
+3.  **Visual Management**: Implemented an interactive **Kanban Board** to provide a high-level overview of the sales pipeline, which is a significant UX improvement for sales teams.
+4.  **Premium UX**: Built a **Dark Mode** system from the ground up using CSS variables, demonstrating attention to detail and modern design standards.
+5.  **Database Design**: Chose an ACID-compliant MySQL structure with Sequelize. Relationships were carefully modeled to ensure that deleting a lead cleans up its notes and activities (Cascade).
+6.  **Security**: Implemented JWT authentication and Bcrypt hashing for passwords.
 
 ### Challenges Overcome:
--   **Data Synchronization**: Ensuring that the dashboard updates accurately when leads are edited required a robust API response structure where the updated model is returned with its associations.
--   **UI Consistency**: Building a premium "Dark Mode" aesthetic required careful selection of a color palette (Indigo/Slate/Emerald) to ensure high contrast and readability.
+-   **Data Synchronization**: Ensuring that the dashboard updates accurately when leads are edited required a robust API response structure.
+-   **Theme Switching**: Managing complex state transitions for the theme across third-party libraries like Recharts.
 
 ### Learning Outcomes:
-This project reinforced the importance of **CRUD integrity**. It's easy to make a "Create" button, but handling "Delete" with related data and "Bulk Update" for efficiency separates a basic app from a professional tool.
+This project reinforced the importance of **CRUD integrity**. Handling "Delete" with related data and "Bulk Update" for efficiency separates a basic app from a professional tool.
 
 ### Future Enhancements:
 If I had more time, I would implement:
 -   Webhooks for lead capture from external sites.
--   A Kanban board view for the sales pipeline.
--   Role-based access control (RBAC) where salespeople only see their own leads.
+-   Email integration to track communications directly within the CRM.
+-   Role-based access control (RBAC) where salespeople only see their own assigned leads.

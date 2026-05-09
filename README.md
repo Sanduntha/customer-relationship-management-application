@@ -88,7 +88,7 @@ npm run dev
 Create a `.env` file in the `server` directory:
 - `DB_HOST`: `localhost`
 - `DB_USER`: `root`
-- `DB_PASSWORD`: `(your password)`
+- `DB_PASSWORD`: `1234`
 - `DB_NAME`: `crm_leads_db`
 - `JWT_SECRET`: `(any strong string)`
 - `CLIENT_URL`: `http://localhost:5173`
@@ -101,8 +101,8 @@ Create a `.env` file in the `server` directory:
 
 ---
 
-## 🎥 Demo & Reflection
-*   **Demo Video**: [Add Link Here]
+## 🎥 Demo & Documentation
+*   **Demo Video**: [https://drive.google.com/file/d/1rAKC-1jPYnFm7c0Kz9jYlSszPlaqo6CN/view?usp=sharing](https://drive.google.com/file/d/1rAKC-1jPYnFm7c0Kz9jYlSszPlaqo6CN/view?usp=sharing)
 *   **Development Reflection**: See [REFLECTION.md](./REFLECTION.md)
 *   **Technical Walkthrough**: See [WALKTHROUGH.md](./WALKTHROUGH.md)
 
